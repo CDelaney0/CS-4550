@@ -1,18 +1,23 @@
+#pragma once
 #include "token.h"
-#ifndef Symbol
-#define Symbol
+class SymbolTable {
 
-class SymbolTableClass{
-  public:
-  bool Exists(const std::string &amp; s);
-void AddEntry(const std::string &amp; s);
-int GetValue(const std::string &amp; s);
-void SetValue(const std::string &amp; s, int v);
-int GetIndex(const std::string &amp; s);
-int GetCount();
-
-struct Variable(string mLabel,int mValue);
-vector SymbolVector<Variable>;
-}
-
-#endif
+public:
+	SymbolTable();
+	struct Variable {
+		string mLabel;
+		int mValue;
+	};
+	bool Exists(string s);
+	void AddEntry(string s);
+	int GetValue(string s);
+	void SetValue(string s, int v);
+	void PushScope();
+	void PopScope();
+	int GetIndex(string s);
+	int GetIndexForMC(string s);
+	int GetCount();
+	std::vector<Variable> Types;
+	std::vector<int> mScopes;
+private:
+};
