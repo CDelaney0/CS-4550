@@ -1,58 +1,91 @@
-#include "Symbol.h"
+#include "symbol.h"
 
-SymbolTableClass::Exists(const std::string& s){
-  int i = SymbolVector.length();
-  int j = 0;
-  for (; j < i;j++){
-    if (s == SymbolVector[j].mLabel){
-      return true;
-      }//gets a variable from the vector
-  }
-  return false;
+SymbolTable::SymbolTable() 
+	:Types()
+{
 }
-SymbolTableClass::AddEntry(const std::string& s){
-  if (Exists(s) == false){
-    return;
-  }
-  SymbolVector.append(Variable[s,0]
-  return;
-
+void SymbolTable::PushScope() {
+	int size = GetCount();
+	mScopes.push_back(size);
 }
-SymbolTableClass::GetValue(const std::string& s){
-  if (Exists(s) == false){
-    std::cout << "the symbol you tried to get is not recorded" << std::endl;
-    return;
-  }
-  for(j=0;j < SymbolVector.length();j++){
-    if (s == SymbolVector[j].mLabel){
-      return SymbolVector[j].mValue;
-    }
-  }
-
+void SymbolTable::PopScope() {
+	int size = GetCount();
+	int last = mScopes[mScopes.size() - 1];
+	mScopes.pop_back();
+	for (int i = size-1; i >= last; i--) {
+		Types.pop_back();
+	}
 }
-SymbolTableClass::SetValue(const std::string& s, int v){
-  if (Exists(s)==false){
-    std::cout << "the symbol you tried to get is not recorded" << std::endl;
-    return;
-  }
-  for(j=0;j < SymbolVector.length();j++){
-    if (s == SymbolVector[j].mLabel){
-      SymbolVector[j].mValue = v;
-      return;
-    }
-  }
+bool SymbolTable::Exists(string s) {
+	for (int i = Types.size() - 1; i >= 0; i--) {
+		if (Types[i].mLabel == s) {
+			return true;
+		}
+	}
+	return false;
 }
-SymbolTableClass::GetIndex(const std::string& s){
-  if (Exists(s)==false){
-    return -1;
-  }
-  for(j=0;j < SymbolVector.length();j++){
-    if (s == SymbolVector[j].mLabel){
-      return j;
-    }
-  }
-
+// returns true if <s> is already in the symbol table.
+void SymbolTable::AddEntry(string s) {
+	MSG("Adding Entry to Symbol Table");
+	for (int i = Types.size() - 1; i >= mScopes[mScopes.size()-1]; i--) {
+		if (Types[i].mLabel == s) {
+			std::cerr << "Trying to redefine " << Types[i].mLabel << std::endl;
+			exit(0);
+		}
+	}
+	Variable sym;
+	sym.mLabel = s;
+	Types.push_back(sym);
 }
-SymbolTableClass::GetCount(){
-  return SymbolVector.size();
+// adds <s> to the symbol table, 
+// or quits if it was already there
+int SymbolTable::GetValue(string s) { 
+	for (int i = Types.size()-1; i >= 0; i--) {
+		if (Types[i].mLabel == s) {
+			return Types[i].mValue;
+		}
+	}
+	std::cerr << s << " not found in the symbol table." << std::endl;
+	exit(0);
 }
+// returns the current value of variable <s>, when
+// interpreting. Meaningless for Coding and Executing.
+// Prints a message and quits if variable s does not exist.
+void SymbolTable::SetValue(string s, int v) {
+	for (int i = Types.size() - 1; i >= 0; i--) {
+		if (Types[i].mLabel == s) {
+			Types[i].mValue = v;
+			return;
+		}
+	}
+	std::cerr << s << " not found in the symbol table." << std::endl;
+	exit(0);
+}
+// sets variable <s> to the given value, when interpreting.
+// Meaningless for Coding and Executing.
+// Prints a message and quits if variable s does not exist.
+int SymbolTable::GetIndex(string s) {
+	for (int i = Types.size() - 1; i >= 0; i--) {
+		if (Types[i].mLabel == s) {
+			return i;
+		}
+	}
+	return -1; 
+}
+int SymbolTable::GetIndexForMC(string s) {
+	for (int i = Types.size() - 1; i >= 0; i--) {
+		if (Types[i].mLabel == s) {
+			return i;
+		}
+	}
+	std::cerr << s << " not found in the symbol table." << std::endl;
+	exit(0);
+	return -1;
+}
+// returns the index of where variable <s> is.
+// returns -1 if variable <s> is not there.
+int SymbolTable::GetCount() { 
+	return Types.size();
+}
+// returns the current number of variables in the symbol
+// table.
