@@ -1,4 +1,25 @@
 #include "token.h"
+#include "scanner.h"
+#include "symbol.h"
+#include "node.h"
+#include "parser.h"
+#include "instructions.h"
+
+int main() {
+	InstructionsClass instr;
+	SymbolTable *symbols = new SymbolTable();
+	Scanner *scanner = new Scanner("Text.txt");
+	Parser parser(scanner, symbols);
+	StartNode *sn = parser.Start();
+	sn->Interpret();
+	/*sn->Code(instr);
+	instr.Finish();
+	instr.Execute();*/
+	delete sn;
+	return 0;
+}
+
+/*#include "token.h"
 //#include "StateMachine.h"
 #include <iostream>
 //import "StateMachine.h"
@@ -32,4 +53,4 @@ tokenclass ScannerClass::returnsomething(){
   machine state current = start_state;
   do
 }
-*/
+*/*/
