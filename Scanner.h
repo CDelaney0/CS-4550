@@ -1,16 +1,19 @@
-#include "StateMachine.h"
-#ifndef Scanner
-#define Scanner
+#pragma once
+#include <iostream>
+#include "token.h"
+#include <fstream>
 
-class ScannerClass{
-  public;
-    ScannerClass(string input)
-    GetNextToken(){TokenClass current}
-    PeekNextToken()
-    
+class Scanner {
+public:
+	Scanner();
+	Scanner(char * in);
+	~Scanner();
+	Token GetNextToken();
+	Token PeekNextToken();
+	std::string StripWS(std::string &lex);
+	int GetLineNumber() { return mLineNumber; };
 
-  private;
-    ifstream mFin;
-}
-
-#endif 
+private:
+	std::ifstream mFin;
+	int mLineNumber;
+};
