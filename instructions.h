@@ -1,7 +1,4 @@
 #pragma once
-#ifndef INSTRUCTIONS
-#define INSTRUCTIONS
-
 const int MAX_INSTRUCTIONS = 5000;
 const int MAX_DATA = 5000;
 
@@ -20,7 +17,7 @@ public:
 	void Execute(); // Causes the instruction pointer to jump into the array of machine code that behaves like a function
 	void PrintAllMachineCodes(); // for debugging
 
-								 // Getting numbers on and off the stack, calling, and printing
+	// Getting numbers on and off the stack, calling, and printing
 	void PushValue(int value);  // used by IntegerNode
 	void Call(void * function_address);
 	void PopAndWrite(); // used by CoutStatementNode
@@ -28,14 +25,12 @@ public:
 	int * GetMem(int index); // index is 0 based.
 	void PushVariable(unsigned int index); // used by IdentifierNode
 	void PopAndStore(unsigned int index); // used by AssignmentStatementNode
-	void PopPushPush();
-	void Pop();
-										  // Mathematical Operators
+
+	// Mathematical Operators
 	void PopPopAddPush(); // Puts resulting integer on stack
 	void PopPopSubPush();
 	void PopPopMulPush();
 	void PopPopDivPush();
-	void PopPopModPush();
 
 	// Relational Operators
 	void PopPopComparePush(unsigned char relational_operator);
@@ -51,47 +46,14 @@ public:
 	// Logical Operators
 	void PopPopAndPush();
 	void PopPopOrPush();
-	/*
-	IFCODE
-	mCode
-	expression->CodeEvaluate(mCode)
-	-------------
-	skipIfZeroStack // pops a non-zero or a zero from the stack
-	store return value
-	jumpAddy = return value.
-	get address of where the newxt instruction should go
-	address1 = getAddress(mCode)
-	Statement->Code(mCode)
-	address2 = getAddress(mCode)
-	sizeofcode = (unsigned char)address2 - (unsigned char)address1
-	mCode.setOffset(jumpAddy, sizeofcode)
-	
-	WHILE
-	mCode
-	addy0 = getADdres()
-	expression->CodeEvaluate(mCode)
-	-------------
-	skipIfZeroStack // pops a non-zero or a zero from the stack
-	store return value
-	jumpAddy = return value.
-	get address of where the newxt instruction should go
-	address1 = getAddress(mCode)
-	Statement->Code(mCode)
-	jumpaddy2 = Jump()
-	address2 = getAddress(mCode)
-	sizeofcode = (unsigned char)address2 - (unsigned char)address1
-	mCode.setOffset(jumpAddy, sizeofcode)
-	mCode.SetOffset(jumpaddy2, addy0 - addy2)
-	*/
-
 
 	// Jumping around based on the top of stack being 1 or 0.
 	unsigned char * SkipIfZeroStack(); // skips some number of bytes forward, if the integer on the stack is zero.
-									   // The number of bytes to skip forward MUST be later set by calling SetOffset with the return value.
-									   // The number that was on the stack (1 or 0) gets popped as a side effect.
+	// The number of bytes to skip forward MUST be later set by calling SetOffset with the return value.
+	// The number that was on the stack (1 or 0) gets popped as a side effect.
 	unsigned char * GetAddress(); // returns the memory address where the next instruction will go.
 	unsigned char * Jump(); // writes code to jump forward or backward some number of bytes.
-							// The number of bytes to skip MUST be set later by calling SetOffset with the return value.
+	// The number of bytes to skip MUST be set later by calling SetOffset with the return value.
 
 	void SetOffset(unsigned char * codeAddress, int offset); // After a jump offset becomes known, this method can be used to go back and set it.
 
@@ -101,5 +63,3 @@ private:
 	int mCurrent;
 	int mData[MAX_DATA];
 };
-
-#endif
