@@ -14,5 +14,13 @@ int main(){
   
   //test 2 finishes step 5
   ScannerClass scanner("problem.txt");
-  std::cout << scanner.GetNextToken << std::endl;
+  while(true){
+    Token T = Scanner.GetNextToken();
+    std::cout << T << std::endl;
+    if (T.GetTokenType() == TokenType[-1]){
+      std::cout << "end of file" << std::endl;
+      break;
+    }
+    }
+      
 }
