@@ -1,5 +1,5 @@
 #include "StateMachine.h"
-#include "token.h"
+#include "Token.h"
 
 StateMachineClass::StateMachineClass(){
   //set currentstate to start
