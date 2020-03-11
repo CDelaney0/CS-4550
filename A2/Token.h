@@ -33,19 +33,26 @@ const std::string gTokenTypeNames[] = {
 	"IDENTIFIER","INTEGER",
 	"BAD", "ENDFILE"
 };
-class TokenClass
+class Token
 {
 private:
   TokenType mType;
-  string mLexeme;
+  std::string mLexeme;
 public:
   Token();
-  Token(TokenType type, const string &amp; lexeme);
+
+  Token(TokenType type, const std::string & lexeme);
+
   TokenType GetTokenType() const { return mType; }
-  const string &amp; GetTokenTypeName() const { return gTokenTypeNames[mType]; }
-  string GetLexeme() const { return mLexeme; }
+
+  const std::string & GetTokenTypeName() const { return gTokenTypeNames[mType]; }
+
+  std::string GetLexeme() const { return mLexeme; }
+
   void CheckReserved();
-  static const string &amp; GetTokenTypeName(TokenType type) { return gTokenTypeNames[type]; }
+
+  static const std::string & GetTokenTypeName(TokenType type) { return gTokenTypeNames[type]; }
+
 };
 std::ostream &operator << (std::ostream & out, const Token & tok); 
 #endif
