@@ -1,8 +1,12 @@
+#include <iostream>
+#include <string>
 #include "Token.h"
 
-void main(){
+int main(){
+  //test 1 passed
   TokenType tt = VOID_TOKEN;
-  string lexeme = "void";
-  TokenClass tokl(tt, lexeme);
-  cout << tok1 << endl;
+  std::string lexeme = "void";
+  Token tokl(tt, lexeme);
+  std::cout << tokl << std::endl;
+  return 0;
 }
