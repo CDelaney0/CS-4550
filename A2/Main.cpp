@@ -3,7 +3,7 @@
 #include "Token.h"
 
 int main(){
-  //test 1 passed
+  //test 1 passed finishes step 2
   TokenType tt = VOID_TOKEN;
   std::string lexeme = "void";
   Token tokl(tt, lexeme);
