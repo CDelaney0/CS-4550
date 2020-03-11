@@ -1,6 +1,6 @@
 #ifndef STATEMACHINE
 #define STATEMACHINE
-#include "token.h"
+#include "Token.h"
 
 enum MachineState {
   START_STATE, IDENTIFIER_STATE, INTEGER_STATE, CANTMOVE_STATE, 
