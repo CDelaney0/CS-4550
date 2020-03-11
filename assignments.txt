@@ -1,0 +1,15 @@
+book from teacher
+1 Do all problems at the end of Chapter 1, except the extra mile problems, which are optional.
+2 Do problems 1-5 at the end of the Scanner chapter.
+3 Do problems 6-10 at the end of the Scanner chapter.
+4 Do all the problems at the end of the Symbol Table chapter.//Do many of the problems at the end of the Parse Tree chapter, but this won't be collected until later.
+5 Finish the problems at the end of the Parse Tree chapter. Do the problems at the end of the Expressions chapter.
+6 Finish problems 1 and 2 at the end of the Parser chapter.
+7 Finish the rest of the problems at the end of the Parser chapter.
+8 Do the problems at the end of the Interpreter chapter.
+9 Enhance your compiler so it can compile and execute, as well as interpret. Use instructions_starter.cpp and instructions.h as helper code.
+10  1. Support chained cout statements when interpreting and compiling, including the special symbol "endl." No longer automatically print carriage returns.
+    2. Support += and -= style assignments.
+    3. Support scoping. That is, every block of code should introduce a new scope. When exiting the block, all variables declared within that block should be removed from the symbol table.
+    4. Make your code cross compile in Windows Visual C++, and MAC/Linux.
+ 
