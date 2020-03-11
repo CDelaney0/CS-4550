@@ -1,0 +1,4 @@
+1. Support chained cout statements when interpreting and compiling, including the special symbol "endl." No longer automatically print carriage returns.
+2. Support += and -= style assignments.
+3. Support scoping. That is, every block of code should introduce a new scope. When exiting the block, all variables declared within that block should be removed from the symbol table.
+4. Make your code cross compile in Windows Visual C++, and MAC/Linux.
