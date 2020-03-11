@@ -35,24 +35,6 @@ const std::string gTokenTypeNames[] = {
 	"IDENTIFIER", "INTEGER", "IF", "ELSE","DO","WHILE", "AND", "OR", "STRING", "WORD", "REPEAT",
 	"BAD", "ENDFILE"
 };
-/*
-class Token 
-{
-	public:
-		Token();
-		Token(TokenType type, const std::string &lexeme);
-		//std::string GetTypeString() const { return TokenType[mType]; };
-		//static std::string GetTypeString() {};
-		void CheckReserved();
-		void SetTokenType(TokenType type);
-		void SetTokenLexeme(std::string lexeme);
-		const std::string &GetTokenTypeName() const {return gTokenTypeNames[mType];}
-		TokenType GetTokenType() const { return mType; };
-		std::string GetLexeme() const { return mLexeme; };
-	private:
-		TokenType mType; 
-		std::string mLexeme;
-};*/
 class TokenClass
 {
 private:
