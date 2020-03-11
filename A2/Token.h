@@ -39,8 +39,8 @@ private:
   TokenType mType;
   string mLexeme;
 public:
-  TokenClass();
-  TokenClass(TokenType type, const string &amp; lexeme);
+  Token();
+  Token(TokenType type, const string &amp; lexeme);
   TokenType GetTokenType() const { return mType; }
   const string &amp; GetTokenTypeName() const { return gTokenTypeNames[mType]; }
   string GetLexeme() const { return mLexeme; }
