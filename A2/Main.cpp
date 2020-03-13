@@ -10,7 +10,6 @@ int main(){
   std::string lexeme = "void";
   Token tokl(tt, lexeme);
   std::cout << tokl << std::endl;
-  return 0;
   
   //test 2 finishes step 5
   ScannerClass scanner("problem.txt");
@@ -22,5 +21,7 @@ int main(){
       break;
     }
     }
+  
+  return 0;
       
 }
