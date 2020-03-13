@@ -8,6 +8,7 @@ ScannerClass::ScannerClass(std::string current){
 		std::cout << "couldn't open file" << std::endl;
 		exit(1);
 	}
+	}
 }
 
 ScannerClass::~Scanner() {
