@@ -1,7 +1,13 @@
 #include "Scanner.h"
 
 ScannerClass::ScannerClass(std::string current){
-  
+  	:mFin(current)
+	{
+	std::ifstream mFin;
+	if (!mFin) {
+		std::cout << "couldn't open file" << std::endl;
+		exit(1);
+	}
 }
 
 ScannerClass::~Scanner() {
